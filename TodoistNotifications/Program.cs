@@ -1,2 +1,15 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace Program
+{
+    public class Program
+    {
+        public static async Task MainAsync()
+        {
+            await Services.ApiCalls.GetActiveTasks();
+        }
+        public static void Main()
+        {
+            MainAsync().Wait();
+        }
+    }
+}
+
