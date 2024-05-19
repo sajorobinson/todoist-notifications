@@ -19,6 +19,5 @@ namespace Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? Due { get; set; }
         public TimeSpan? Duration { get; set; }
-
     }
 }
