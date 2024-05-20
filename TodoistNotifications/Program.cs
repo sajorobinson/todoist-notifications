@@ -4,7 +4,8 @@
     {
         public static async Task MainAsync()
         {
-            await Services.ApiCalls.GetActiveTasks();
+            var result = Helpers.Json.DeserializeJson(await Services.ApiCalls.GetActiveTasks());
+            Console.WriteLine(Helpers.Json.ReturnFirstOfDeserializedObject(result).Id);
         }
         public static void Main()
         {
