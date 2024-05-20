@@ -4,7 +4,7 @@ namespace Helpers
 {
     public class Json
     {
-        public static Object DeserializeJson(string inputJsonString)
+        public static object DeserializeJson(string inputJsonString)
         {
             var deserialized = JsonConvert.DeserializeObject(inputJsonString);
             return deserialized!;
