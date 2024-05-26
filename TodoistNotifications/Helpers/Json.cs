@@ -4,9 +4,9 @@ namespace Helpers
 {
     public class Json
     {
-        public static Models.Task[] DeserializeJson(string inputJsonString)
+        public static T DeserializeJson<T>(string inputJsonString)
         {
-            var deserialized = JsonConvert.DeserializeObject<Models.Task[]>(inputJsonString);
+            var deserialized = JsonConvert.DeserializeObject<T>(inputJsonString);
             return deserialized!;
         }
 
