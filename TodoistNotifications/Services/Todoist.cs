@@ -1,6 +1,6 @@
 namespace Services
 {
-    public class ApiCalls
+    public class Todoist
     {
         const string ApiBaseUrl = "https://api.todoist.com/rest/v2/";
 
