@@ -9,7 +9,6 @@
             {
                 Console.WriteLine(task.Content);
             }
-            //Console.WriteLine(Helpers.Json.ReturnFirstOfDeserializedObject(result).Due?.Date);
         }
         public static void Main()
         {
