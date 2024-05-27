@@ -11,11 +11,11 @@ namespace Services
         const string ReceiverName = "Example User";
         public static async Task SendEmail(string Subject, string PlainTextContent, string HtmlContent)
         {
-            var apiKey = Private.Credentials.SendGridApiToken();
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(Private.Email.GetEmailSender(), SenderName);
-            var to = new EmailAddress(Private.Email.GetEmailRecipient(), ReceiverName);
-            var msg = MailHelper.CreateSingleEmail(from, to, Subject, PlainTextContent, HtmlContent);
+            string apiKey = Private.Credentials.SendGridApiToken();
+            SendGridClient client = new SendGridClient(apiKey);
+            EmailAddress from = new EmailAddress(Private.Email.GetEmailSender(), SenderName);
+            EmailAddress to = new EmailAddress(Private.Email.GetEmailRecipient(), ReceiverName);
+            SendGridMessage msg = MailHelper.CreateSingleEmail(from, to, Subject, PlainTextContent, HtmlContent);
             var response = await client.SendEmailAsync(msg);
         }
     }
