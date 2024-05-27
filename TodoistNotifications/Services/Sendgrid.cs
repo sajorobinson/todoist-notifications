@@ -9,16 +9,15 @@ namespace Services
 {
     class SendGrid
     {
-        static async Task SendEmail()
+        const string SenderName = "TodoistNotifications";
+        const string ReceiverName = "Example User";
+        public static async Task SendEmail(string Subject, string PlainTextContent, string HtmlContent)
         {
             var apiKey = Private.Credentials.SendGridApiToken();
             var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(Private.Email.GetEmailSender(), "Example User");
-            var subject = "Sending with SendGrid is Fun";
-            var to = new EmailAddress(Private.Email.GetEmailRecipient(), "Example User");
-            var plainTextContent = "and easy to do anywhere, even with C#";
-            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var from = new EmailAddress(Private.Email.GetEmailSender(), SenderName);
+            var to = new EmailAddress(Private.Email.GetEmailRecipient(), ReceiverName);
+            var msg = MailHelper.CreateSingleEmail(from, to, Subject, PlainTextContent, HtmlContent);
             var response = await client.SendEmailAsync(msg);
         }
     }
