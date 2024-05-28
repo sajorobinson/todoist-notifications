@@ -12,12 +12,32 @@
                 {
                     continue;
                 }
+                else if (task.Due is null)
+                {
+                    continue;
+                }
                 else
                 {
-                    list+= task.Content.ToString() + "\n";
+                    DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due?.Date);
+                    bool dueSoon = Helpers.Time.EvaluateDueDate(dueDate);
+                    if (dueSoon)
+                    {
+                        list += task.Content.ToString() + "\n";
+                    }
+                    else
+                    {
+                        continue;
+                    } 
                 }
             }
-            await Services.SendGrid.SendEmail("This is a test", list, "");
+            if (list.Length > 0)
+            {
+                await Services.SendGrid.SendEmail("This is a test", list, "");
+            }
+            else
+            {
+                Console.WriteLine("No tasks due.");
+            }
         }
         public static void Main()
         {
