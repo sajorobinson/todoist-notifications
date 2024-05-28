@@ -61,6 +61,15 @@ The `Private` folder contains methods that give access to sensitive connection s
 | `Private/Credentials.cs` | Contains methods that access the connection strings for the Todoist API and the SendGrid API. These are stored as environment variables. |
 | `Private/Email.cs`       | Contains methods that access the defined sender and recipient of any emails sent via the SendGrid API.                                   |
 
+### `Services`
+
+The `Services` folder contains methods for interacting with the Todoist API and the SendGrid API.
+
+| File                   | Description                                                  |
+| ---------------------- | ------------------------------------------------------------ |
+| `Services/SendGrid.cs` | Contains a method for sending an email via the SendGrid API. |
+| `Services/Todoist.cs`  | Contains a method for retrieving tasks via the Todoist API.  |
+
 ### `Program.cs`
 
 The entry point of the program. This file contains the class `Program`, which has two methods:
