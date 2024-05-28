@@ -72,31 +72,5 @@ namespace Models
 
         [JsonPropertyName("is_recurring")]
         public bool IsRecurring { get; set; }
-
-        public static DateTime ParseDueDate(string dateInput)
-        {
-            try
-            {
-                DateTime parsedDate = DateTime.Parse(dateInput);
-                return parsedDate;
-            }
-            catch
-            {
-                throw new Exception("Error: Failed to parse due date.");
-            }
-        }
-
-        public static bool IsDueSoon(TaskDue task)
-        {
-            try
-            {
-                DateTime dueDate = ParseDueDate(task.Date);
-                return dueDate.Subtract(DateTime.Now) < TimeSpan.FromHours(8);
-            }
-            catch
-            {
-                throw new Exception("Error: Failed to evaluate due date");
-            }
-        }
     }
 }
