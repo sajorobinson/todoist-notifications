@@ -72,5 +72,8 @@ namespace Models
 
         [JsonPropertyName("is_recurring")]
         public bool IsRecurring { get; set; }
+        
+        [JsonPropertyName("datetime")]
+        public string? DateTime {get; set;}
     }
 }
