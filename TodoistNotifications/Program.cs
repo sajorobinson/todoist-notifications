@@ -1,4 +1,6 @@
-﻿namespace Program
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Program
 {
     public class Program
     {
@@ -16,12 +18,17 @@
                 {
                     continue;
                 }
+                else if (task.Due.DateTime is null)
+                {
+                    continue;
+                }
                 else
                 {
-                    DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due?.Date);
+                    DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due?.DateTime);                    
                     bool dueSoon = Helpers.Time.EvaluateDueDate(dueDate);
                     if (dueSoon)
                     {
+                        Console.WriteLine(task.Content + " -- " + task.Due.DateTime);
                         list += task.Content.ToString() + "\n";
                     }
                     else
@@ -32,7 +39,7 @@
             }
             if (list.Length > 0)
             {
-                await Services.SendGrid.SendEmail("This is a test", list, "");
+                // await Services.SendGrid.SendEmail("This is a test", list, "");
             }
             else
             {
