@@ -4,13 +4,28 @@ namespace Helpers
     {
         public static DateTime ConvertDateStringToDateTime(string date)
         {
-            DateTime dateTime = DateTime.Parse(date);
-            return dateTime;
+            try
+            {
+                DateTime dateTime = DateTime.Parse(date);
+                return dateTime;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: Could not parse date string.", ex);
+            }
         }
 
         public static bool EvaluateDueDate(System.DateTime date)
         {
-            return date.Subtract(DateTime.Now) < TimeSpan.FromHours(8);
+            try
+            {
+                return date.Subtract(DateTime.Now) < TimeSpan.FromHours(8);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: Could not evaluate due date.", ex);
+            }
+            
         }
     }
 }
