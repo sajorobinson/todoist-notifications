@@ -5,61 +5,54 @@
         public static async Task MainAsync()
         {
             var result = Helpers.Json.DeserializeJson<Models.Task[]>(await Services.Todoist.GetActiveTasks());
+            
 
-            Models.TaskList listDueNow = new Models.TaskList();
-            listDueNow.Title = "Due now:\n";
-            listDueNow.Items = "";
-
-            Models.TaskList listVeryUrgent = new Models.TaskList();
-            listVeryUrgent.Title = "Very urgent:\n";
-            listVeryUrgent.Items = "";
-
-            Models.TaskList listUrgent = new Models.TaskList();
-            listUrgent.Title = "Urgent: \n";
-            listUrgent.Items = "";
-
-            Models.TaskList listLessUrgent = new Models.TaskList();
-            listLessUrgent.Title = "Less urgent:\n";
-            listLessUrgent.Items = "";
+            Models.TaskList dueNowList = new Models.TaskList();
+            dueNowList.Title = "Due now:\n";
+            dueNowList.Items = "";
+            
+            Models.TaskList veryUrgentList = new Models.TaskList();
+            veryUrgentList.Title = "Very urgent:\n";
+            veryUrgentList.Items = "";
+            
+            Models.TaskList urgentList = new Models.TaskList();
+            urgentList.Title = "Urgent: \n";
+            urgentList.Items = "";
+            
+            Models.TaskList lessUrgentList = new Models.TaskList();
+            lessUrgentList.Title = "Less urgent:\n";
+            lessUrgentList.Items = "";
 
             foreach (Models.Task task in result)
             {
-                if (task.Content is null)
-                {
-                    continue;
-                }
-                else if (task.Due is null)
-                {
-                    continue;
-                }
-                else if (task.Due.DateTime is null)
-                {
+                if (task.Content is null | task.Due is null | task.Due?.DateTime is null)
+                { 
                     continue;
                 }
                 else
                 {
                     DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due?.DateTime!);
                     
-                    bool dueNow = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.DueNow));
-                    bool veryUrgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.VeryUrgent));
-                    bool urgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.Urgent));
-                    bool lessUrgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.LessUrgent));
+                    bool isDueNow = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.DueNow));
+                    bool isVeryUrgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.VeryUrgent));
+                    bool isUrgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.Urgent));
+                    bool isLessUrgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.LessUrgent));
                     
-                    if (dueNow)
+                    if (isDueNow)
                     {
-                        listDueNow.Items += task.Content.ToString() + "\n";
+                        dueNowList.Items += task.Content!.ToString() + "\n";
                     }
-                    else if (veryUrgent)
+                    else if (isVeryUrgent)
                     {
-                        listVeryUrgent.Items += task.Content.ToString() + "\n";
+                        veryUrgentList.Items += task.Content!.ToString() + "\n";
                     }
-                    else if (urgent)
+                    else if (isUrgent)
                     {
-                        listUrgent.Items += task.Content.ToString() + "\n";
+                        urgentList.Items += task.Content!.ToString() + "\n";
                     }
-                    else if (lessUrgent)
+                    else if (isLessUrgent)
                     {
-                        listUrgent.Items += task.Content.ToString() + "\n";
+                        urgentList.Items += task.Content!.ToString() + "\n";
                     }
                     else
                     {
@@ -69,25 +62,21 @@
             }
 
             string payload = "";
-
-            if (listDueNow.Items.Length > 0)
+            if (dueNowList.Items.Length > 0)
             {
-                payload += listDueNow.Title + "\n" + listDueNow.Items + "\n";
+                payload += dueNowList.Title + "\n" + dueNowList.Items + "\n";
             }
-
-            if (listVeryUrgent.Items.Length > 0)
+            if (veryUrgentList.Items.Length > 0)
             {
-                payload += listVeryUrgent.Title + "\n" + listVeryUrgent.Items + "\n";
+                payload += veryUrgentList.Title + "\n" + veryUrgentList.Items + "\n";
             }
-
-            if (listUrgent.Items.Length > 0)
+            if (urgentList.Items.Length > 0)
             {
-                payload += listUrgent.Title + "\n" + listUrgent.Items + "\n";
+                payload += urgentList.Title + "\n" + urgentList.Items + "\n";
             }
-
-            if (listLessUrgent.Items.Length > 0)
+            if (lessUrgentList.Items.Length > 0)
             {
-                payload += listLessUrgent.Title + "\n" + listUrgent.Items + "\n";
+                payload += lessUrgentList.Title + "\n" + urgentList.Items + "\n";
             }
 
             await Services.SendGrid.SendEmail("This is a test", payload, "");
