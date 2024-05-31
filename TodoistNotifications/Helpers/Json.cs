@@ -6,8 +6,17 @@ namespace Helpers
     {
         public static T DeserializeJson<T>(string inputJsonString)
         {
-            var deserialized = JsonConvert.DeserializeObject<T>(inputJsonString);
-            return deserialized!;
+            try
+            {
+                var deserialized = JsonConvert.DeserializeObject<T>(inputJsonString);
+                return deserialized!;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: Could not deserialize JSON.", ex);
+            }
+            
+            
         }
 
         public static Models.Task ReturnFirstOfDeserializedObject(Models.Task[] deserializedJson)
