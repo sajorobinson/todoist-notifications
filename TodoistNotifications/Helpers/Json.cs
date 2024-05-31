@@ -15,13 +15,6 @@ namespace Helpers
             {
                 throw new Exception("Error: Could not deserialize JSON.", ex);
             }
-            
-            
-        }
-
-        public static Models.Task ReturnFirstOfDeserializedObject(Models.Task[] deserializedJson)
-        {
-            return deserializedJson.First();
         }
     }
 }
