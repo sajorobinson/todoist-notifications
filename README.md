@@ -25,11 +25,10 @@ I have a few learning objectives for this project:
 
 ## Improvements (to do)
 
-| Improvement (to do)                 | Description                                                                                                                                                                                                 |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Error handling                      | Right now, there is very little in the way of gracefully catching exceptions                                                                                                                                |
-| Build out logic for date evaluation | The goal is for the script to check the due date of a task and notify me if it's within `n` hours. Basic evaluation exists, but I want to refactor it so that it can check at more specific time intervals. |
-| Build out logic for checking        | This script runs when it runs. My goal is to make it a program that continuously runs, giving me continuous access to notifications.                                                                        |
+| Improvement (to do)          | Description                                                                                                                          |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Error handling               | Right now, there is very little in the way of gracefully catching exceptions                                                         |
+| Build out logic for checking | This script runs when it runs. My goal is to make it a program that continuously runs, giving me continuous access to notifications. |
 
 ## Documentation
 
@@ -48,9 +47,11 @@ The `Helpers` folder contains files that contain classes that interact and proce
 
 The `Models` folder contains files that define the data structures of the program.
 
-| File             | Description                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Models/Task.cs` | Contains classes that define the data structure of a task, as defined by the [Todoist API](https://developer.todoist.com/rest/v2/#tasks). The contained class `Models.Task` represents the data structure of the overarching task. The class `Models.TaskDue` represents the data structure of the nested task due date. These classes are used when deserializing JSON from the Todoist API into objects in C#. |
+| File                    | Description                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Models/Task.cs`        | Contains classes that define the data structure of a task, as defined by the [Todoist API](https://developer.todoist.com/rest/v2/#tasks). The contained class `Models.Task` represents the data structure of the overarching task. The class `Models.TaskDue` represents the data structure of the nested task due date. These classes are used when deserializing JSON from the Todoist API into objects in C#. |
+| `Models/TaskList.cs`    | Contains a class used for creating a list of tasks. The list of tasks is inserted into the email as part of the message payload. A list of tasks is created for each level of urgency, defined in `TaskUrgency.cs`.                                                                                                                                                                                              |
+| `Models/TaskUrgency.cs` | Contains an enum that defines levels of urgency of tasks based on how many hours away the due date is.                                                                                                                                                                                                                                                                                                           |
 
 ### `Private`
 
@@ -76,5 +77,3 @@ The entry point of the program. This file contains the class `Program`, which ha
 
 - `MainAsync()` - Runs the logic of the program.
 - `Main()` - Runs the MainAsync() function and waits for it to complete.
-
-In its current configuration, `MainAsync()` works by first declaring an empty string. When the code grabs the Todoist tasks and checks for upcoming due dates, any task that meets the criteria (being due within 8 hours) has its name appended to the empty string. This string is then inserted into an email and sent to an email address.
