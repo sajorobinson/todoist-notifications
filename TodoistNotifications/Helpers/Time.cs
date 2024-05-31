@@ -15,11 +15,11 @@ namespace Helpers
             }
         }
 
-        public static bool EvaluateDueDate(System.DateTime date)
+        public static bool EvaluateDueDate(System.DateTime date, int hoursUntilDue)
         {
             try
             {
-                return date.Subtract(DateTime.Now) < TimeSpan.FromHours(8);
+                return date.Subtract(DateTime.Now) < TimeSpan.FromHours(hoursUntilDue);
             }
             catch (Exception ex)
             {

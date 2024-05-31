@@ -23,7 +23,7 @@
                 else
                 {
                     DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due?.DateTime);                    
-                    bool dueSoon = Helpers.Time.EvaluateDueDate(dueDate);
+                    bool dueSoon = Helpers.Time.EvaluateDueDate(dueDate, 3);
                     if (dueSoon)
                     {
                         Console.WriteLine(task.Content + " -- " + task.Due.DateTime);
