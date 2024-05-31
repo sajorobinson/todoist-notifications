@@ -4,13 +4,27 @@ namespace Private
     {
         public static string TodoistApiToken()
         {
-            string token = Environment.GetEnvironmentVariable("TODOIST_API_TOKEN")!;
-            return token;
+            try
+            {
+                string token = Environment.GetEnvironmentVariable("TODOIST_API_TOKEN")!;
+                return token;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: Could not retrieve TodoistApiToken", ex);
+            }
         }
         public static string SendGridApiToken()
         {
-            string token = Environment.GetEnvironmentVariable("SENDGRID_API_TOKEN")!;
-            return token;
+            try
+            {
+                string token = Environment.GetEnvironmentVariable("SENDGRID_API_TOKEN")!;
+                return token;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: Could not retrieve SendGridApiToken", ex);
+            }
         }
     }
 }
