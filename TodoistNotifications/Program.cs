@@ -5,23 +5,30 @@
         public static async Task MainAsync()
         {
             var result = Helpers.Json.DeserializeJson<Models.Task[]>(await Services.Todoist.GetActiveTasks());
-            
 
-            Models.TaskList dueNowList = new Models.TaskList();
-            dueNowList.Title = "Due now:\n";
-            dueNowList.Items = "";
-            
-            Models.TaskList veryUrgentList = new Models.TaskList();
-            veryUrgentList.Title = "Very urgent:\n";
-            veryUrgentList.Items = "";
-            
-            Models.TaskList urgentList = new Models.TaskList();
-            urgentList.Title = "Urgent: \n";
-            urgentList.Items = "";
-            
-            Models.TaskList lessUrgentList = new Models.TaskList();
-            lessUrgentList.Title = "Less urgent:\n";
-            lessUrgentList.Items = "";
+            Models.TaskList dueNowList = new Models.TaskList
+            {
+                Title = "Due now:\n",
+                Items = ""
+            };
+
+            Models.TaskList veryUrgentList = new Models.TaskList
+            {
+                Title = "Very urgent:\n",
+                Items = ""
+            };
+
+            Models.TaskList urgentList = new Models.TaskList
+            {
+                Title = "Urgent: \n",
+                Items = ""
+            };
+
+            Models.TaskList lessUrgentList = new Models.TaskList
+            {
+                Title = "Less urgent:\n",
+                Items = ""
+            };
 
             foreach (Models.Task task in result)
             {
