@@ -15,11 +15,23 @@ namespace Helpers
             }
         }
 
+        public static DateTime ConvertToUniversalTime(DateTime dateTime)
+        {
+            return dateTime.Kind switch
+            {
+                DateTimeKind.Unspecified => dateTime.ToUniversalTime(),
+                DateTimeKind.Local => dateTime.ToUniversalTime(),
+                _ => dateTime, // Already in UTC or another Kind
+            };
+        }
+
         public static bool EvaluateDueDate(DateTime date, int hoursUntilDue)
         {
             try
             {
-                return date.Subtract(DateTime.Now) <= TimeSpan.FromHours(hoursUntilDue);
+                DateTime inputToUtc = ConvertToUniversalTime(date);
+                DateTime nowToUtc = ConvertToUniversalTime(DateTime.Now);
+                return inputToUtc.Subtract(nowToUtc) < TimeSpan.FromHours(hoursUntilDue);
             }
             catch (Exception ex)
             {
