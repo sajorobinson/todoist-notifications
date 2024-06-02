@@ -15,7 +15,7 @@ namespace Helpers
             }
         }
 
-        public static bool EvaluateDueDate(System.DateTime date, int hoursUntilDue)
+        public static bool EvaluateDueDate(DateTime date, int hoursUntilDue)
         {
             try
             {
