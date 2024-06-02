@@ -11,7 +11,7 @@ namespace Private
             }
             catch (Exception ex)
             {
-                throw new Exception("Error: Could not retrieve TodoistApiToken", ex);
+                throw new Exception("Error: Could not retrieve Todoist API token", ex);
             }
         }
         public static string SendGridApiToken()
@@ -23,7 +23,7 @@ namespace Private
             }
             catch (Exception ex)
             {
-                throw new Exception("Error: Could not retrieve SendGridApiToken", ex);
+                throw new Exception("Error: Could not retrieve SendGrid API token", ex);
             }
         }
     }
