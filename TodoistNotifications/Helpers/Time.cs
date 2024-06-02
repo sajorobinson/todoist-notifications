@@ -25,7 +25,6 @@ namespace Helpers
             {
                 throw new Exception("Error: Could not evaluate due date.", ex);
             }
-            
         }
     }
 }

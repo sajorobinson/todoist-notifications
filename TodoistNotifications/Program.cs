@@ -8,25 +8,25 @@
 
             Models.TaskList dueNowList = new Models.TaskList
             {
-                Title = $"{Models.TaskUrgency.DueNowTitle}:\n",
+                Title = Models.TaskUrgency.DueNowTitle,
                 Items = ""
             };
 
             Models.TaskList veryUrgentList = new Models.TaskList
             {
-                Title = $"{Models.TaskUrgency.VeryUrgentTitle}\n",
+                Title = Models.TaskUrgency.VeryUrgentTitle,
                 Items = ""
             };
 
             Models.TaskList urgentList = new Models.TaskList
             {
-                Title = $"{Models.TaskUrgency.UrgentTitle}\n",
+                Title = Models.TaskUrgency.UrgentTitle,
                 Items = ""
             };
 
             Models.TaskList lessUrgentList = new Models.TaskList
             {
-                Title = $"{Models.TaskUrgency.LessUrgentTitle}\n",
+                Title = Models.TaskUrgency.LessUrgentTitle,
                 Items = ""
             };
 
