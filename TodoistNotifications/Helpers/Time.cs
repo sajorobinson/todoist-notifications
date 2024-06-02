@@ -19,7 +19,7 @@ namespace Helpers
         {
             try
             {
-                return date.Subtract(DateTime.Now) < TimeSpan.FromHours(hoursUntilDue);
+                return date.Subtract(DateTime.Now) <= TimeSpan.FromHours(hoursUntilDue);
             }
             catch (Exception ex)
             {
