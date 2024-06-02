@@ -8,25 +8,25 @@
 
             Models.TaskList dueNowList = new Models.TaskList
             {
-                Title = "Due now:\n",
+                Title = $"{Models.TaskUrgency.DueNowTitle}:\n",
                 Items = ""
             };
 
             Models.TaskList veryUrgentList = new Models.TaskList
             {
-                Title = "Very urgent:\n",
+                Title = $"{Models.TaskUrgency.VeryUrgentTitle}\n",
                 Items = ""
             };
 
             Models.TaskList urgentList = new Models.TaskList
             {
-                Title = "Urgent: \n",
+                Title = $"{Models.TaskUrgency.UrgentTitle}\n",
                 Items = ""
             };
 
             Models.TaskList lessUrgentList = new Models.TaskList
             {
-                Title = "Less urgent:\n",
+                Title = $"{Models.TaskUrgency.LessUrgentTitle}\n",
                 Items = ""
             };
 
@@ -40,10 +40,10 @@
                 {
                     DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due?.DateTime!);
                     
-                    bool isDueNow = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.DueNow));
-                    bool isVeryUrgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.VeryUrgent));
-                    bool isUrgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.Urgent));
-                    bool isLessUrgent = Helpers.Time.EvaluateDueDate(dueDate, Convert.ToInt32(Models.TaskUrgency.LessUrgent));
+                    bool isDueNow = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.DueNow);
+                    bool isVeryUrgent = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.VeryUrgent);
+                    bool isUrgent = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.Urgent);
+                    bool isLessUrgent = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.LessUrgent);
                     
                     if (isDueNow)
                     {
