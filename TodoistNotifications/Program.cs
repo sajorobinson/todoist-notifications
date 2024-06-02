@@ -39,7 +39,7 @@
                 else
                 {
                     DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due?.DateTime!);
-                    
+
                     bool isDueNow = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.DueNow);
                     bool isVeryUrgent = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.VeryUrgent);
                     bool isUrgent = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.Urgent);
