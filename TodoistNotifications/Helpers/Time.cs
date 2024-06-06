@@ -1,5 +1,3 @@
-using Microsoft.VisualBasic;
-
 namespace Helpers
 {
     public class Time
@@ -17,7 +15,6 @@ namespace Helpers
                 throw new Exception("Error: Could not parse date string.", ex);
             }
         }
-
         public static bool EvaluateDueDate(DateTime date, int hoursUntilDue)
         {
             try
