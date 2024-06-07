@@ -40,26 +40,23 @@
                 {
                     DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due?.DateTime!);
 
-                    bool isDueNow = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.DueNow);
-                    bool isVeryUrgent = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.VeryUrgent);
-                    bool isUrgent = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.Urgent);
-                    bool isLessUrgent = Helpers.Time.EvaluateDueDate(dueDate, Models.TaskUrgency.LessUrgent);
-                    
-                    if (isDueNow)
+                    double dueIn = Helpers.Time.EvaluateDueDate(dueDate);
+
+                    if (dueIn <= Models.TaskUrgency.DueNow)
                     {
                         dueNowList.Items += task.Content!.ToString() + "\n";
                     }
-                    else if (isVeryUrgent)
+                    else if (dueIn <= Models.TaskUrgency.VeryUrgent)
                     {
                         veryUrgentList.Items += task.Content!.ToString() + "\n";
                     }
-                    else if (isUrgent)
+                    else if (dueIn <= Models.TaskUrgency.Urgent)
                     {
                         urgentList.Items += task.Content!.ToString() + "\n";
                     }
-                    else if (isLessUrgent)
+                    else if (dueIn <= Models.TaskUrgency.LessUrgent)
                     {
-                        urgentList.Items += task.Content!.ToString() + "\n";
+                        lessUrgentList.Items += task.Content!.ToString() + "\n";
                     }
                     else
                     {
