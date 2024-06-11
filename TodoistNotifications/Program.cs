@@ -30,7 +30,7 @@ namespace Program
             foreach (Models.Task task in result)
             {
                 if (task.Content is null || task.Due is null || task.Due?.DateTime is null)
-                { 
+                {
                     continue;
                 }
                 DateTime dueDate = Helpers.Time.ConvertDateStringToDateTime(task.Due.DateTime);
