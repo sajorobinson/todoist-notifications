@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Models
+namespace TodoistNotifications.Models
 {
     public class Task
     {

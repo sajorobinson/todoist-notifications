@@ -1,8 +1,8 @@
 using System.Xml.XPath;
 
-namespace Helpers
+namespace TodoistNotifications.Helpers
 {
-    public class Time
+    public static class Time
     {
         public static DateTime ConvertDateStringToDateTime(string date)
         {

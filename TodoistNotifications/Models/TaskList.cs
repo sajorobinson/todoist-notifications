@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Models
+namespace TodoistNotifications.Models
 {
     public class TaskList
     {

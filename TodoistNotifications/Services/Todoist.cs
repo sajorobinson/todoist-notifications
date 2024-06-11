@@ -1,4 +1,4 @@
-namespace Services
+namespace TodoistNotifications.Services
 {
     public class Todoist
     {

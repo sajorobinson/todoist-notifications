@@ -1,10 +1,10 @@
 ﻿using System.Text;
 
-namespace Program
+namespace TodoistNotifications
 {
-    public class Program
+    public static class Program
     {
-        public static async Task MainAsync()
+        private static async Task MainAsync()
         {
             var result = Helpers.Json.DeserializeJson<Models.Task[]>(await Services.Todoist.GetActiveTasks());
             Models.TaskList dueNowList = new Models.TaskList
@@ -51,10 +51,6 @@ namespace Program
                 else if (dueIn <= Models.TaskUrgency.LessUrgent)
                 {
                     lessUrgentList.Items.Append(taskContent);
-                }
-                else
-                {
-                    continue;
                 }
             }
             StringBuilder payload = new StringBuilder();

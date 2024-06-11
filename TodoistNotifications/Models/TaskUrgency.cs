@@ -1,4 +1,4 @@
-namespace Models
+namespace TodoistNotifications.Models
 {
     public static class TaskUrgency
     {

@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 
-namespace Helpers
+namespace TodoistNotifications.Helpers
 {
-    public class Json
+    public static class Json
     {
         public static T DeserializeJson<T>(string inputJsonString)
         {
