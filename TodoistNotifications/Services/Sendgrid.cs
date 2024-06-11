@@ -3,7 +3,7 @@
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
-namespace Services
+namespace TodoistNotifications.Services
 {
     class SendGrid
     {
