@@ -1,6 +1,6 @@
 # TodoistNotifications
 
-**TodoistNotifications** is a project for me to learn the basics about parsing and making API requests in C#. 
+A learning exercise to practice the basics of parsing JSON and making API requests in C#.
 
 ## Status
 
@@ -30,7 +30,7 @@ I also learned a few things through trial and error along the way.
 | Accidental learning                                      | What I've learned                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Learning to critically look at every part of the program | I was experiencing an issue where tasks weren't being slotted into their correct buckets. The program wasn't organizing tasks due within 24 hours correctly. After much trial and error and checking to make sure my logic was solid, I used some advice from the internet and changed my payload building from simple string concatenation to using the StringBuilder() class. This immediately fixed the problem. I suspect there was some sort of issue with threads in the string concatenation process that StringBuilder() solved. Valuable lesson is to check all aspects of code, even if something doesn't seem pertinent, because I didn't think at all that the string concatenation could be causing the problem. |
- 
+
 ## Improvements (to do)
 
 | Improvement (to do)          | Description                                                                                                                          |
@@ -44,7 +44,7 @@ This documentation goes through each directory containing code and provides a hi
 
 ### `Helpers`
 
-The `Helpers` folder contains files that contain classes that interact and process various types of data. 
+The `Helpers` folder contains files that contain classes that interact and process various types of data.
 
 | File              | Description                                                                                                                                                                                                                                                    |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
